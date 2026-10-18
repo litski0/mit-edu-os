@@ -60,6 +60,44 @@ main(int argc, char *argv[])
 void
 memdump(char *fmt, char *data)
 {
-  // Your code here.
+  // Your code here..
+  int f1 = strlen(fmt);
+  int f2 = strlen(data);
+
+  int offset = 0;
+  
+
+  for(int i=0;i<f1;i++){
+    
+    if(fmt[i]=='i'){
+      
+      printf("%d\n", *(int *)(data + offset));
+      offset+=4;
+    }
+    else if(fmt[i]=='p'){
+     
+      printf("%lx\n", *(uint64 *)(data+offset));
+      offset+=8;
+    }
+    else if (fmt[i]=='h'){
+     
+      printf("%d\n", *(short *)(data + offset));
+      offset+=2;
+    }
+    else if (fmt[i]=='c'){
+      printf("%c\n", *(char *)(data+offset));
+      offset+=1;
+
+    }else if (fmt[i]=='s'){
+      
+      printf("%s\n", *(char **)(data + offset));
+      offset+=8;
+    }else if(fmt[i]=='S'){
+      printf("%s\n", data+offset);
+      offset+=f2;
+    }
+    
+  }
+
 
 }
